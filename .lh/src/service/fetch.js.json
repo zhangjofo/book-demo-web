@@ -1,0 +1,26 @@
+{
+    "sourceFile": "src/service/fetch.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1706979796935,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1706979873130,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,13 +26,9 @@\n     return Promise.reject(error)\r\n   })\r\n \r\n   type = type.toUpperCase()\r\n-  if (url.indexOf('?') >= 1) {\r\n-    url = baseUrl + url\r\n-  } else {\r\n-    url = baseUrl + url\r\n-  }\r\n+  url = baseUrl + url\r\n \r\n   if (type == 'GET') {\r\n     return axios.get(url, {params: data}).then(res => {\r\n       return res.data\r\n"
+                },
+                {
+                    "date": 1706980468800,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -66,9 +66,9 @@\n       return res.data\r\n     }).catch(error => {\r\n       console.log('###error:' + JSON.stringify(error))\r\n       if(error){\r\n-        console.log('@@@###data:' + data)\r\n+        console.log('@@@###data:' + JSON.stringify(data))\r\n       }\r\n       if (error.config.timeout) {\r\n         return error\r\n       }\r\n"
+                }
+            ],
+            "date": 1706979796935,
+            "name": "Commit-0",
+            "content": "import axios from 'axios'\r\nimport qs from 'qs'\r\nimport {rootUrl, baseUrl} from './env'\r\n\r\nexport default async (url = '', data = {}, type = '') => {\r\n  axios.defaults.withCredentials = true // 允许携带session，否则会出现session不同的问题\r\n  axios.defaults.timeout = 10000 // 设置超时为10秒\r\n  // Add a request interceptor\r\n  axios.interceptors.request.use(function (config) {\r\n    // 判断是否存在token，如果存在将每个页面header都添加token\r\n    if (localStorage.getItem('token')) {\r\n      config.headers.common['token'] = localStorage.getItem('token')\r\n    }\r\n    return config\r\n  }, function (error) {\r\n    // Do something with request error\r\n    return Promise.reject(error)\r\n  })\r\n\r\n  // Add a response interceptor\r\n  axios.interceptors.response.use(function (response) {\r\n    // Do something with response data\r\n    return response\r\n  }, function (error) {\r\n    // Do something with response error\r\n    return Promise.reject(error)\r\n  })\r\n\r\n  type = type.toUpperCase()\r\n  if (url.indexOf('?') >= 1) {\r\n    url = baseUrl + url\r\n  } else {\r\n    url = baseUrl + url\r\n  }\r\n\r\n  if (type == 'GET') {\r\n    return axios.get(url, {params: data}).then(res => {\r\n      return res.data\r\n    }).catch(error => {\r\n      console.log('####error:' + JSON.stringify(error))\r\n      if (error.config.timeout) {\r\n        return error\r\n      }\r\n      if (error.response.data.status == 500) {\r\n        window.sessionStorage.removeItem('menuItems')\r\n        window.location.href = '/#/login'\r\n      }\r\n      if (error.response.data.status == 400) {\r\n        return error.response.data\r\n      }\r\n    })\r\n  }\r\n\r\n  if (type == '') {\r\n    return axios.post(url, qs.stringify(data)).then(res => {\r\n      return res.data\r\n    }).catch(error => {\r\n      console.log('###error:' + error)\r\n      if (error.config.timeout) {\r\n        console.log('timeout：' + JSON.stringify(error))\r\n        return error\r\n      }\r\n      if (error.response.data.status == 400) {\r\n        return error.response.data\r\n      }\r\n    })\r\n  }\r\n  if (type == 'POST') {\r\n    return axios.post(url, data).then(res => {\r\n      return res.data\r\n    }).catch(error => {\r\n      console.log('###error:' + JSON.stringify(error))\r\n      if(error){\r\n        console.log('@@@###data:' + data)\r\n      }\r\n      if (error.config.timeout) {\r\n        return error\r\n      }\r\n      if (error.response.data.status == 400) {\r\n        return error.response.data\r\n      }\r\n    })\r\n  }\r\n  if (type == 'PUT') {\r\n    return axios.put(url, data).then(res => {\r\n      if (res.data == 'TIMEOUT') {\r\n        window.location.href = rootUrl + 'login'\r\n      } else {\r\n        return res.data\r\n      }\r\n    }).catch(err => {\r\n      console.log('###error:' + JSON.stringify(err))\r\n    })\r\n  }\r\n  if (type == 'DELETE') {\r\n    return axios.delete(url, data).then(res => {\r\n      if (res.data == 'TIMEOUT') {\r\n        window.location.href = rootUrl + 'login'\r\n      } else {\r\n        return res.data\r\n      }\r\n    }).catch(err => {\r\n      console.log('###error:' + JSON.stringify(err))\r\n    })\r\n  }\r\n}\r\n"
+        }
+    ]
+}

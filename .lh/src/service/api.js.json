@@ -1,0 +1,38 @@
+{
+    "sourceFile": "src/service/api.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 5,
+            "patches": [
+                {
+                    "date": 1706976258801,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1706976531098,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,2 +1,2 @@\n import fetch from './fetch'\r\n-export const appVersionData = () => fetch('/book/list', bookQueryDTO, 'POST')\n\\ No newline at end of file\n+export const listData = () => fetch('/book/list', bookQueryDTO, 'POST')\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1706977339484,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,2 @@\n+import fetch from './fetch'\r\n+export const listData = (bookQueryDTO) => fetch('/book/list', bookQueryDTO, 'POST')\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1706977363455,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,2 @@\n import fetch from './fetch'\r\n-export const listData = (bookQueryDTO) => fetch('/book/list', bookQueryDTO, 'POST')\n-import fetch from './fetch'\r\n-export const listData = () => fetch('/book/list', bookQueryDTO, 'POST')\n\\ No newline at end of file\n+export const listData = (bookQueryDTO) => fetch('/book/list', bookQueryDTO, 'POST')\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1706978729707,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,2 +1,3 @@\n import fetch from './fetch'\r\n+\r\n export const listData = (bookQueryDTO) => fetch('/book/list', bookQueryDTO, 'POST')\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1706979736786,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,3 @@\n import fetch from './fetch'\r\n \r\n-export const listData = (bookQueryDTO) => fetch('/book/list', bookQueryDTO, 'POST')\n\\ No newline at end of file\n+export const listData = (bookQueryDTO) => fetch('book/list', bookQueryDTO, 'POST')\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1706976258801,
+            "name": "Commit-0",
+            "content": "import fetch from './fetch'\r\nexport const appVersionData = () => fetch('/book/list', bookQueryDTO, 'POST')"
+        }
+    ]
+}
