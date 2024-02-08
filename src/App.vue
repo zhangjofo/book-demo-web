@@ -49,7 +49,7 @@
             </el-date-picker>
           </div>
         </el-form-item>
-        <el-form-item label="Status" v-if="bookDTO.id != ''">
+        <el-form-item label="Status" v-if="bookDTO.id !== ''">
           <el-select v-model="bookDTO.bookStatus" placeholder="Please select">
             <el-option v-for="item in options"
               :key="item.value"
@@ -131,10 +131,10 @@ export default {
       this.dialogVisible = true
     },
     saveOperation() {
-      if (this.bookDTO.id != undefined && this.bookDTO.id != '') {
+      if (this.bookDTO.id !== undefined && this.bookDTO.id !== '') {
         updateData(this.bookDTO).then((res) => {
           console.log(res)
-          if(res.code==10200) {
+          if(res.code===10200) {
             this.$message({
               message: res.message,
               type: 'success'
@@ -148,7 +148,7 @@ export default {
       } else {
         addData(this.bookDTO).then((res) => {
           console.log(res)
-          if(res.code==10200) {
+          if(res.code===10200) {
             this.$message({
               message: res.message,
               type: 'success'
