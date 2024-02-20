@@ -29,7 +29,7 @@ export default async (url = '', data = {}, type = '') => {
   type = type.toUpperCase()
   url = baseUrl + url
 
-  if (type == 'GET') {
+  if (type === 'GET') {
     return axios.get(url, {params: data}).then(res => {
       return res.data
     }).catch(error => {
@@ -37,17 +37,17 @@ export default async (url = '', data = {}, type = '') => {
       if (error.config.timeout) {
         return error
       }
-      if (error.response.data.status == 500) {
+      if (error.response.data.status === 500) {
         window.sessionStorage.removeItem('menuItems')
         window.location.href = '/#/login'
       }
-      if (error.response.data.status == 400) {
+      if (error.response.data.status === 400) {
         return error.response.data
       }
     })
   }
 
-  if (type == '') {
+  if (type === '') {
     return axios.post(url, qs.stringify(data)).then(res => {
       return res.data
     }).catch(error => {
@@ -56,12 +56,12 @@ export default async (url = '', data = {}, type = '') => {
         console.log('timeout：' + JSON.stringify(error))
         return error
       }
-      if (error.response.data.status == 400) {
+      if (error.response.data.status === 400) {
         return error.response.data
       }
     })
   }
-  if (type == 'POST') {
+  if (type === 'POST') {
     return axios.post(url, data).then(res => {
       return res.data
     }).catch(error => {
@@ -72,14 +72,14 @@ export default async (url = '', data = {}, type = '') => {
       if (error.config.timeout) {
         return error
       }
-      if (error.response.data.status == 400) {
+      if (error.response.data.status === 400) {
         return error.response.data
       }
     })
   }
-  if (type == 'PUT') {
+  if (type === 'PUT') {
     return axios.put(url, data).then(res => {
-      if (res.data == 'TIMEOUT') {
+      if (res.data === 'TIMEOUT') {
         window.location.href = rootUrl + 'login'
       } else {
         return res.data
@@ -88,9 +88,9 @@ export default async (url = '', data = {}, type = '') => {
       console.log('###error:' + JSON.stringify(err))
     })
   }
-  if (type == 'DELETE') {
+  if (type === 'DELETE') {
     return axios.delete(url, data).then(res => {
-      if (res.data == 'TIMEOUT') {
+      if (res.data === 'TIMEOUT') {
         window.location.href = rootUrl + 'login'
       } else {
         return res.data
