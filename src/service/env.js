@@ -1,5 +1,5 @@
-const rootUrl = "http://192.168.247.130/#/"
-const baseUrl = "http://192.168.247.130:8081/book-system/"
+const rootUrl = "http://18.142.178.76/#/"
+const baseUrl = "http://18.142.178.76:8080/book-system/"
 export {
     rootUrl,
     baseUrl
