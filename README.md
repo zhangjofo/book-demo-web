@@ -28,7 +28,7 @@ yarn lint
 
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
-## demo url: http://3.0.89.164/
+## demo url: http://18.142.178.76/
 
 ## Page show
 
@@ -37,4 +37,3 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ![](assets/20240207_165206_image.png)
 
 ![](assets/20240207_165436_image.png)
-
